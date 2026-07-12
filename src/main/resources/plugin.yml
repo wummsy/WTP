@@ -1,0 +1,47 @@
+name: WTPUtils
+version: '1.0.0'
+main: com.wtputils.WTPUtils
+api-version: '1.21'
+author: WTPUtils
+description: TPA requests and multi-dimension RTP with GUI, fully configurable.
+
+commands:
+  tpa:
+    description: Request to teleport to a player.
+    usage: /tpa <player>
+  tpahere:
+    description: Request a player to teleport to you.
+    usage: /tpahere <player>
+  tpaccept:
+    description: Accept an incoming teleport request.
+    usage: /tpaccept
+  tpdeny:
+    description: Deny an incoming teleport request.
+    usage: /tpdeny
+  tpcancel:
+    description: Cancel your outgoing teleport request.
+    usage: /tpcancel
+  rtp:
+    description: Randomly teleport, optionally with a dimension picker GUI.
+    usage: /rtp [world]
+    aliases: [wild, randomtp]
+  wtputils:
+    description: WTPUtils admin command.
+    usage: /wtputils <reload>
+
+permissions:
+  wtputils.tpa:
+    description: Allows use of /tpa, /tpahere, /tpaccept, /tpdeny, /tpcancel
+    default: true
+  wtputils.rtp:
+    description: Allows use of /rtp
+    default: true
+  wtputils.reload:
+    description: Allows use of /wtputils reload
+    default: op
+  wtputils.bypass.cooldown:
+    description: Bypasses tpa and rtp cooldowns
+    default: op
+  wtputils.rtp.*:
+    description: Grants rtp access to all dimensions regardless of per-world permission node
+    default: op

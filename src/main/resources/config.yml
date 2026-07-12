@@ -1,0 +1,112 @@
+# ============================================
+#  WTP UTILS - Configuration
+# ============================================
+
+messages:
+  prefix: "&8[&b&lWTP&8] &r"
+  no-permission: "&cYou do not have permission to do that."
+  player-only: "&cOnly players can use this command."
+  player-not-found: "&cPlayer '%player%' is not online."
+  cannot-target-self: "&cYou cannot use that on yourself."
+
+  tpa-sent: "&aTeleport request sent to &f%target%&a. It expires in &f%seconds%s&a."
+  tpa-received: "&e%player% &fhas requested to teleport to you. &a/tpaccept &for &c/tpdeny &f(expires in %seconds%s)"
+  tpahere-received: "&e%player% &fhas requested that you teleport to them. &a/tpaccept &for &c/tpdeny &f(expires in %seconds%s)"
+  tpa-no-pending-target: "&cYou already have a pending request to %target%."
+  tpa-already-incoming: "&cThat player already has a pending incoming request."
+  tpa-none-pending: "&cYou have no pending incoming teleport request."
+  tpa-none-outgoing: "&cYou have no pending outgoing teleport request."
+  tpa-accepted-sender: "&a%target% accepted your teleport request."
+  tpa-accepted-target: "&aYou accepted the teleport request from %player%."
+  tpa-denied-sender: "&c%target% denied your teleport request."
+  tpa-denied-target: "&cYou denied the teleport request from %player%."
+  tpa-cancelled-sender: "&cYou cancelled your teleport request to %target%."
+  tpa-cancelled-target: "&c%player% cancelled their teleport request."
+  tpa-expired-sender: "&cYour teleport request to %target% expired."
+  tpa-expired-target: "&cThe teleport request from %player% expired."
+  tpa-cooldown: "&cYou must wait &f%seconds%s &cbefore sending another request."
+
+  warmup-start: "&eTeleporting in &f%seconds%s&e... don't move!"
+  warmup-cancelled-move: "&cTeleport cancelled because you moved."
+  warmup-cancelled-damage: "&cTeleport cancelled because you took damage."
+  warmup-complete: "&aTeleported!"
+
+  rtp-gui-title: "&8Select a Dimension"
+  rtp-dimension-disabled: "&cRandom teleport is disabled for that dimension."
+  rtp-dimension-no-permission: "&cYou do not have permission to RTP to that dimension."
+  rtp-cooldown: "&cYou must wait &f%seconds%s &cbefore using /rtp again."
+  rtp-searching: "&eSearching for a safe location..."
+  rtp-success: "&aRandomly teleported you to &f%x%, %y%, %z% &ain %world%&a."
+  rtp-failed: "&cCouldn't find a safe location after %attempts% attempts. Try again."
+  rtp-unknown-world: "&cUnknown or disabled world '%world%'."
+
+  reload-success: "&aWTP Utils configuration reloaded."
+
+tpa:
+  # How long (in seconds) a request stays valid before it auto-expires.
+  request-timeout-seconds: 60
+  # Cooldown (in seconds) between sending outgoing requests.
+  cooldown-seconds: 5
+  # Warmup (in seconds) countdown before teleport actually happens after acceptance.
+  # Set to 0 to teleport instantly.
+  warmup-seconds: 3
+  # Cancel the warmup if the player moves.
+  cancel-on-move: true
+  # Cancel the warmup if the player takes damage.
+  cancel-on-damage: true
+
+rtp:
+  # Global cooldown (in seconds) between /rtp uses.
+  cooldown-seconds: 30
+  # Warmup (in seconds) before an rtp teleport happens. Set to 0 for instant.
+  warmup-seconds: 0
+  cancel-on-move: true
+  cancel-on-damage: true
+  # How many random locations to try before giving up.
+  max-attempts: 30
+  # Blocks below the player that must be solid & safe, and blocks that are considered unsafe to land in/on.
+  unsafe-materials:
+    - LAVA
+    - WATER
+    - FIRE
+    - CACTUS
+    - MAGMA_BLOCK
+    - VOID_AIR
+  # Per-world (per-dimension) settings. The key MUST be the exact world name as defined by your server.
+  dimensions:
+    world:
+      enabled: true
+      display-name: "&aOverworld"
+      icon: "GRASS_BLOCK"
+      lore:
+        - "&7Random teleport into the Overworld"
+      permission: "wtputils.rtp.world"
+      center-x: 0
+      center-z: 0
+      min-radius: 100
+      max-radius: 5000
+    world_nether:
+      enabled: true
+      display-name: "&cNether"
+      icon: "NETHERRACK"
+      lore:
+        - "&7Random teleport into the Nether"
+      permission: "wtputils.rtp.nether"
+      center-x: 0
+      center-z: 0
+      min-radius: 100
+      max-radius: 1000
+    world_the_end:
+      enabled: false
+      display-name: "&5The End"
+      icon: "END_STONE"
+      lore:
+        - "&7Random teleport into the End"
+        - "&cDisabled by default - enable in config.yml"
+      permission: "wtputils.rtp.end"
+      center-x: 0
+      center-z: 0
+      min-radius: 100
+      max-radius: 1000
+
+config-version: 1
